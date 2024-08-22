@@ -1,5 +1,6 @@
 package tokens;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,6 +48,53 @@ public class TokenLogic {
             }
         }
     }
+    
+    public ArrayList<Integer> kmp(String text, String patron) {
+        ArrayList <Integer> p =new   ArrayList <Integer>();
+		int cont = 0;
+		if (patron == null || patron.length() == 0) {
+		
+			p.add(0);
+			cont++;
+			
+		}
+
+		
+
+		char[] chars = patron.toCharArray();
+
+		int[] next = new int[patron.length() + 1];
+		for (int i = 1; i < patron.length(); i++) {
+			int j = next[i + 1];
+
+			while (j > 0 && chars[j] != chars[i]) {
+				j = next[j];
+			}
+
+			if (j > 0 || chars[j] == chars[i]) {
+				next[i + 1] = j + 1;
+			}
+		}
+
+		for (int i = 0, j = 0; i < text.length(); i++) {
+			if (j < patron.length() && text.charAt(i) == patron.charAt(j)) {
+				if (++j == patron.length()) {
+					
+					
+					p.add(i-j+1);
+					cont++;
+				}
+			} else if (j > 0) {
+				j = next[j];
+				i--;
+			}
+		}
+
+		
+		
+		return p;
+
+	}
 
     public LinkedList<Token> getTokens() {
         return tokens;
