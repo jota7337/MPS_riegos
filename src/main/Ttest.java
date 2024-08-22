@@ -16,6 +16,7 @@ public class Ttest {
         tokenizer.add("[*/]", Token.MULTDIV); // mult or divide
         tokenizer.add("\\^", Token.RAISED); // raised
         tokenizer.add("[0-9]+", Token.NUMBER); // integer number
+        tokenizer.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); 
         tokenizer.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); // variable
         
         tokenizer.add("%(.|\\n)*?%", Token.COMENTARIO); // comentario completo
