@@ -8,18 +8,45 @@ import tokens.TokenLogic;
 public class Ttest {
 
     public static void main(String[] args) {
-    	TokenLogic tokenizer = new TokenLogic();        
-        tokenizer.add("ClassRoom|Begin|End|ln|sqrt", Token.FUNCTION); // function
-        tokenizer.add("\\(", Token.OPEN_BRACKET); // open bracket
-        tokenizer.add("\\)", Token.CLOSE_BRACKET); // close bracket
-        tokenizer.add("[+-]", Token.PLUSMINUS); // plus or minus
-        tokenizer.add("[*/]", Token.MULTDIV); // mult or divide
-        tokenizer.add("\\^", Token.RAISED); // raised
-        tokenizer.add("[0-9]+", Token.NUMBER); // integer number
-        tokenizer.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); 
-        tokenizer.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); // variable
-        
-        tokenizer.add("%(.|\\n)*?%", Token.COMENTARIO); // comentario completo
+    	TokenLogic TokenLog = new TokenLogic();        
+    	
+    	 TokenLog.add("Precipitación|Días_Desde_Siembra|Humedad_Ambiental|Cantidad_Adicional|Cantidad_Reducida|Umbral_Bajo|Umbral_Alto"
+         		+ "|Etapa_Crecimiento_Óptima|Umbral_Humedad|Días_Entre_Riegos|Estado_Plantas|Tipo_Fertilizante_1|Tipo_Fertilizante_2"
+         		+ "|Plagas_Observadas|Umbral_Plagas|Tipo_Tratamiento|Tamaño_Fruto|Tamaño_Óptimo|Tiempo_Entre_Aportes|pH_Suelo|pH_Minimo"
+         		+ "|pH_Maximo|Solución_Acido|Solución_Alcalina|Días_Para_Cosecha|Días_Entre_Controles|", Token.FUNCTION); // function
+         
+         TokenLog.add("\\(", Token.OPEN_BRACKET); // open bracket
+         TokenLog.add("\\)", Token.CLOSE_BRACKET); // close bracket
+         
+         TokenLog.add("\\{", Token.OPEN_CORCHETE); // open bracket
+         TokenLog.add("\\}", Token.CLOSE_CORCHETE); // close bracket
+         
+         TokenLog.add("[+-=]", Token.PLUSMINUS); // plus or minus
+         TokenLog.add("[*/]", Token.MULTDIV); // mult or divide
+         
+         TokenLog.add("[<>]", Token.RAISED); // mayor o menor
+         
+         TokenLog.add("==", Token.EQUALS); // IGUALES
+         
+         TokenLog.add("<=", Token.EQUALS_HIGHER); // IGUALES
+         TokenLog.add(">=", Token.EQUALS_LOWER); // IGUALES
+         
+         TokenLog.add("[0-9]+", Token.NUMBER); // integer number
+         
+         TokenLog.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); // variable
+         
+         TokenLog.add("%(.|\\n)*?%", Token.COMENTARIO); // comentario completo
+//        tokenizer.add("ClassRoom|Begin|End|ln|sqrt", Token.FUNCTION); // function
+//        tokenizer.add("\\(", Token.OPEN_BRACKET); // open bracket
+//        tokenizer.add("\\)", Token.CLOSE_BRACKET); // close bracket
+//        tokenizer.add("[+-]", Token.PLUSMINUS); // plus or minus
+//        tokenizer.add("[*/]", Token.MULTDIV); // mult or divide
+//        tokenizer.add("\\^", Token.RAISED); // raised
+//        tokenizer.add("[0-9]+", Token.NUMBER); // integer number
+//        tokenizer.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); 
+//        tokenizer.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); // variable
+//        
+//        tokenizer.add("%(.|\\n)*?%", Token.COMENTARIO); // comentario completo
         
      // Agregar palabras clave para entidades
 //        tokenizer.add("PROYECTO\\[|ACTIVIDAD\\[|PERSONA\\[|RECURSO\\[", Token.FUNCTION); // ENTIDAD
@@ -37,7 +64,7 @@ public class Ttest {
 //        tokenizer.add("#.*", Token.COMENTARIO); // Comentarios
 
         try {
-            tokenizer.tokenize("%hola mundo "
+        	TokenLog.tokenize("%hola mundo "
             		+ "yo estoy bien "
             		+ "pero si hago esto "
             		+ "1+1 y"
@@ -48,7 +75,7 @@ public class Ttest {
             
             System.out.println("\n=========TOKEN LIST==========\n");
 
-            for (Token tok : tokenizer.getTokens()) {
+            for (Token tok : TokenLog.getTokens()) {
                 // Excluir comentarios
                 if (tok.token != Token.COMENTARIO) {
                     System.out.println("[Token:" + tok.token + " Lexema:" + tok.lexeme + " Posicion:" + tok.pos + "]");
