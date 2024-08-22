@@ -19,6 +19,8 @@ public class Token {
     public static final int EQUALS = 13;
     public static final int EQUALS_HIGHER = 14; 
     public static final int EQUALS_LOWER = 15;
+    public static final int DUBLE_DOT = 16;
+    public static final int STRING = 17;
     
     
     public final int token;
