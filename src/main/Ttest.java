@@ -9,67 +9,57 @@ public class Ttest {
 
     public static void main(String[] args) {
     	TokenLogic TokenLog = new TokenLogic();        
-    	
-    	 TokenLog.add("Precipitación|Días_Desde_Siembra|Humedad_Ambiental|Cantidad_Adicional|Cantidad_Reducida|Umbral_Bajo|Umbral_Alto"
-         		+ "|Etapa_Crecimiento_Óptima|Umbral_Humedad|Días_Entre_Riegos|Estado_Plantas|Tipo_Fertilizante_1|Tipo_Fertilizante_2"
-         		+ "|Plagas_Observadas|Umbral_Plagas|Tipo_Tratamiento|Tamaño_Fruto|Tamaño_Óptimo|Tiempo_Entre_Aportes|pH_Suelo|pH_Minimo"
-         		+ "|pH_Maximo|Solución_Acido|Solución_Alcalina|Días_Para_Cosecha|Días_Entre_Controles|", Token.FUNCTION); // function
-         
-         TokenLog.add("\\(", Token.OPEN_BRACKET); // open bracket
-         TokenLog.add("\\)", Token.CLOSE_BRACKET); // close bracket
-         
-         TokenLog.add("\\{", Token.OPEN_CORCHETE); // open bracket
-         TokenLog.add("\\}", Token.CLOSE_CORCHETE); // close bracket
-         
-         TokenLog.add("[+-=]", Token.PLUSMINUS); // plus or minus
-         TokenLog.add("[*/]", Token.MULTDIV); // mult or divide
-         
-         TokenLog.add("[<>]", Token.RAISED); // mayor o menor
-         
-         TokenLog.add("==", Token.EQUALS); // IGUALES
-         
-         TokenLog.add("<=", Token.EQUALS_HIGHER); // IGUALES
-         TokenLog.add(">=", Token.EQUALS_LOWER); // IGUALES
-         
-         TokenLog.add("[0-9]+", Token.NUMBER); // integer number
-         
-         TokenLog.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); // variable
-         
-         TokenLog.add("%(.|\\n)*?%", Token.COMENTARIO); // comentario completo
-//        tokenizer.add("ClassRoom|Begin|End|ln|sqrt", Token.FUNCTION); // function
-//        tokenizer.add("\\(", Token.OPEN_BRACKET); // open bracket
-//        tokenizer.add("\\)", Token.CLOSE_BRACKET); // close bracket
-//        tokenizer.add("[+-]", Token.PLUSMINUS); // plus or minus
-//        tokenizer.add("[*/]", Token.MULTDIV); // mult or divide
-//        tokenizer.add("\\^", Token.RAISED); // raised
-//        tokenizer.add("[0-9]+", Token.NUMBER); // integer number
-//        tokenizer.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); 
-//        tokenizer.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); // variable
-//        
-//        tokenizer.add("%(.|\\n)*?%", Token.COMENTARIO); // comentario completo
+    	TokenLog.add("Precipitación|Días_Desde_Siembra", Token.FUNCTION); // function
+//    	|Humedad_Ambiental|Cantidad_Adicional|Cantidad_Reducida|Umbral_Bajo|Umbral_Alto"
+//		+ "|Etapa_Crecimiento_Óptima|Umbral_Humedad|Días_Entre_Riegos|Estado_Plantas|Tipo_Fertilizante_1|Tipo_Fertilizante_2"
+//		+ "|Plagas_Observadas|Umbral_Plagas|Tipo_Tratamiento|Tamaño_Fruto|Tamaño_Óptimo|Tiempo_Entre_Aportes|pH_Suelo|pH_Minimo"
+//		+ "|pH_Maximo|Solución_Acido|Solución_Alcalina|Días_Para_Cosecha|Días_Entre_Controles|
         
-     // Agregar palabras clave para entidades
-//        tokenizer.add("PROYECTO\\[|ACTIVIDAD\\[|PERSONA\\[|RECURSO\\[", Token.FUNCTION); // ENTIDAD
-//        
-//        // Agregar identificadores y valores
-//        tokenizer.add("[a-zA-Z_][a-zA-Z0-9_]*", Token.VARIABLE); // Identificadores
-//        
-//        // Agregar números, fechas y valores de texto
-//        tokenizer.add("\\d+|\\d{1,2}/\\d{1,2}/\\d{4}|[a-zA-Z][a-zA-Z0-9_\\s]*", Token.NUMERO_FECHA_VALOR); // Números, fechas y valores
-//        
-//        // Agregar caracteres especiales
-//        tokenizer.add("\\[|\\]|;|,|:", Token.CARACTER_ESPECIAL); // Caracteres especiales
-//        
-//        // Agregar comentarios
-//        tokenizer.add("#.*", Token.COMENTARIO); // Comentarios
+    	TokenLog.add("\\(", Token.OPEN_BRACKET); // open bracket
+    	TokenLog.add("\\)", Token.CLOSE_BRACKET); // close bracket
+        
+    	TokenLog.add("\\{", Token.OPEN_CORCHETE); // open bracket
+    	TokenLog.add("\\}", Token.CLOSE_CORCHETE); // close bracket
+        
+    	TokenLog.add("[+-=]", Token.PLUSMINUS); // plus or minus
+    	TokenLog.add("[*/:;]", Token.MULTDIV); // mult or divide
+        
+    	TokenLog.add("[<>]", Token.RAISED); // mayor o menor
+        
+    	TokenLog.add("==", Token.EQUALS); // IGUALES
+        
+    	TokenLog.add("<=", Token.EQUALS_HIGHER); // IGUALES
+    	TokenLog.add(">=", Token.EQUALS_LOWER); // IGUALES
+        
+    	TokenLog.add("[0-9]+", Token.NUMBER); // integer number
+        
+    	TokenLog.add("[a-zA-Z][a-zA-Z0-9_]*", Token.VARIABLE); // variable
+        
+    	TokenLog.add("#(.|\\n)*?#", Token.COMENTARIO); // comentario completo    
 
         try {
-        	TokenLog.tokenize("%hola mundo "
-            		+ "yo estoy bien "
-            		+ "pero si hago esto "
-            		+ "1+1 y"
-            		+ "luego esto%"
-            		+ "monosusio");
+        	TokenLog.tokenize("#Control de Riego# "
+        			+ "Proyecto: Gestion_de_Riego_para_Cultivos2\r\n"
+        			+ "Autor: Nombre_del_Autor \r\n"
+        			+ "\r\n"
+        			+ "Analisis:\r\n"
+        			+ "    Solicite Precipitacian\r\n"
+        			+ "    Solicite Dias_Desde_Siembra\r\n"
+        			+ "    Solicite Humedad_Ambiental\r\n"
+        			+ "    Asigne 0 a Cantidad_Adicional\r\n"
+        			+ "    Asigne 0 a Cantidad_Reducida\r\n"
+        			+ "\r\n"
+        			+ "Operacion:\r\n"
+        			+ "    Si Precipitacion < Umbral_Bajo Entonces:\r\n"
+        			+ "        Ajustar_Riego(Cantidad_Adicional)\r\n"
+        			+ "    Si Precipitación > Umbral_Alto Entonces:\r\n"
+        			+ "        Ajustar_Riego(Cantidad_Reducida)\r\n"
+        			+ "\r\n"
+        			+ "    Mientras Dias_Desde_Siembra < Etapa_Crecimiento_optima Hacer:\r\n"
+        			+ "        Si Humedad_Ambiental < Umbral_Humedad Entonces:\r\n"
+        			+ "            Riego(Cantidad_Adicional)\r\n"
+        			+ "        Esperar(Dias_Entre_Riegos)\r\n"
+        			+ "");
             
             IDE ide = new IDE();
             
